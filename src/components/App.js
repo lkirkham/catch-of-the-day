@@ -10,8 +10,8 @@ render(){
            <div className="menu">
             <Header tagline="Fresh Seafood Market"/>
            </div>
-           <Inventory />
            <Order />
+           <Inventory />
         </div>
     )
 }

@@ -8,8 +8,9 @@ goToStore = event => {
 //stop form from submitting
 event.preventDefault();
 //get the text from the input
-console.log(this.myInput.current.value);
+const storeName = this.myInput.current.value;
 //change the page to /store/whatever-they-entered
+this.props.history.push(`/store/${storeName}`);
 
 
 };
