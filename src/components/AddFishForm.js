@@ -13,14 +13,16 @@ class AddFishForm extends React.Component {
         //make the fish object based on the values being pulled in from the references
         const fish = {
             name: this.nameRef.current.value,
-            //wrapping the price in a parse float ensures a number (not a string) is returned
+            //wrapping the price in a parse float ensures a number (not a string) is returned (and it's in cents!)
             price: parseFloat(this.priceRef.current.value),
             status: this.statusRef.current.value,
             desc: this.descRef.current.value,
             image: this.imageRef.current.value,
         }
-        //console log the new fish
-        console.log(fish);
+        //call addFish
+        this.props.addFish(fish);
+        //refresh form
+        event.currentTarget.reset();
     }
 
     render() {
