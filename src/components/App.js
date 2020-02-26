@@ -2,8 +2,9 @@ import React from "react";
 import Header from "./Header.js";
 import Inventory from "./Inventory.js";
 import Order from "./Order.js";
-import sampleFishes from "../sample-fishes.js"
-import Fish from './Fish.js'
+import sampleFishes from "../sample-fishes.js";
+import Fish from './Fish.js';
+import base from '../base.js';
 
 class App extends React.Component{
 //setting initial state before the component actually mounts
@@ -14,6 +15,22 @@ state ={
  },
  order: {}
 };
+//LIFESYCLE METHODS
+componentDidMount(){
+    //to reference the fishes object which will contain and mirror our state
+    this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
+        context: this,
+        state: 'fishes'
+    });
+}
+componentWillUnmount(){
+console.log('Unmounting');
+base.removeBinding(this.ref);
+//as soon as the component unmounts - clean up!
+}
+
+
+//CUSTOM METHODS
 //the methods that update state and the state itself need to live in the same component
 //method to add new fish to state
 addFish = (fish) => {
