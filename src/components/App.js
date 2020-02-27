@@ -10,23 +10,39 @@ class App extends React.Component{
 //setting initial state before the component actually mounts
 //can be set in the constructor using super, or in a property (like below)
 state ={
- fishes: {
-
- },
+ fishes: {},
  order: {}
 };
 //LIFESYCLE METHODS
 componentDidMount(){
+    //first reinstate local storage of order
+    const localStorageRef = localStorage.getItem(this.props.match.params.storeId);
+    // check to see if there is a local storage value, if there is - reinstate it
+    if(localStorageRef){
+        this.setState({
+            //converts string back to an object
+            order: JSON.parse(localStorageRef)
+        });
+    }
+
     //to reference the fishes object which will contain and mirror our state
     this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
         context: this,
         state: 'fishes'
     });
 }
+
+componentDidUpdate(){
+    console.log(this.state.order);
+    //save the updating order state into local storage (stored in browser)
+    //the url slug is the key, and the value is the state- which is an object, but needs to be converted to a string.
+    // JSON.stringify will convert to string
+    localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order));
+}
+
 componentWillUnmount(){
-console.log('Unmounting');
-base.removeBinding(this.ref);
-//as soon as the component unmounts - clean up!
+    //as soon as the component unmounts - clean up!
+    base.removeBinding(this.ref);
 }
 
 
