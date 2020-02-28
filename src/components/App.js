@@ -64,6 +64,15 @@ addFish = (fish) => {
     })
 };
 
+updateFish = (key, updatedFish) => {
+// 1. take a copy of the current state
+const fishes = {...this.state.fishes}
+//2. update the state
+fishes[key] = updatedFish;
+//3. set that to state
+this.setState({fishes:fishes});
+}
+
 addSampleFishes = (fishes) => {
     this.setState({fishes: sampleFishes})
 }
@@ -89,7 +98,7 @@ render(){
             </ul>
            </div>
            <Order fishes={this.state.fishes} order={this.state.order}/> 
-           <Inventory addFish={this.addFish} addSampleFishes={this.addSampleFishes}/>
+           <Inventory addFish={this.addFish} addSampleFishes={this.addSampleFishes} updateFish={this.updateFish} fishes={this.state.fishes}/>
         </div>
     )
 }
