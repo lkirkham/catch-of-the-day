@@ -117,7 +117,7 @@ render(){
             </ul>
            </div>
            <Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder}/> 
-           <Inventory addFish={this.addFish} addSampleFishes={this.addSampleFishes} updateFish={this.updateFish} deleteFish={this.deleteFish} fishes={this.state.fishes}/>
+           <Inventory addFish={this.addFish} addSampleFishes={this.addSampleFishes} updateFish={this.updateFish} deleteFish={this.deleteFish} fishes={this.state.fishes} storeId={this.props.match.params.storeId}/>
         </div>
     )
 }
