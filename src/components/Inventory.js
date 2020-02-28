@@ -8,7 +8,7 @@ render(){
         <div className="inventory">
             <h2>Inventory</h2>
             {/* take the object this.props.fishes, turn it into an array with object.keys, map over it and for each fish make an EditFishForm */}
-            {Object.keys(this.props.fishes).map(key => <EditFishForm key={key} index={key} updateFish={this.props.updateFish} fish={this.props.fishes[key]} />)}
+            {Object.keys(this.props.fishes).map(key => <EditFishForm key={key} index={key} updateFish={this.props.updateFish} deleteFish={this.props.deleteFish}  fish={this.props.fishes[key]} />)}
             {/* add the AddFish form */}
             <AddFishForm addFish={this.props.addFish} />
             {/* add sample fishes button */}

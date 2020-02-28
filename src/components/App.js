@@ -73,6 +73,15 @@ fishes[key] = updatedFish;
 this.setState({fishes:fishes});
 }
 
+deleteFish = (key) =>{
+//1. take a copy of state
+const fishes = {...this.state.fishes};
+//2. update the state
+fishes[key] = null;
+//3. Update state (similar to update state except we are updating )
+this.setState({fishes:fishes});
+}
+
 addSampleFishes = (fishes) => {
     this.setState({fishes: sampleFishes})
 }
@@ -85,6 +94,16 @@ addToOrder = (key) => {
     //3. call setState to update state object
     this.setState({order: order});
 }
+
+removeFromOrder = (key) => {
+    // 1. take copy of state
+    const order = {...this.state.order};
+    //2. remove from order
+    delete order[key];
+    //3. call setState to update state object
+    this.setState({order: order});
+}
+
 render(){
     return(
         <div className="catch-of-the-day">
@@ -97,8 +116,8 @@ render(){
                 {Object.keys(this.state.fishes).map(key => <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder}/>)}
             </ul>
            </div>
-           <Order fishes={this.state.fishes} order={this.state.order}/> 
-           <Inventory addFish={this.addFish} addSampleFishes={this.addSampleFishes} updateFish={this.updateFish} fishes={this.state.fishes}/>
+           <Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder}/> 
+           <Inventory addFish={this.addFish} addSampleFishes={this.addSampleFishes} updateFish={this.updateFish} deleteFish={this.deleteFish} fishes={this.state.fishes}/>
         </div>
     )
 }
